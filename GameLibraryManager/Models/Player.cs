@@ -8,9 +8,9 @@ namespace GameLibraryManager.Models
 {
     public class Player
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public GameStats Stats { get; set; }
+       public int PlayerId { get; set; }
+       public string UserName { get; set; }
+       public GameStats Stats { get; set; }
 
         public Player()
         {

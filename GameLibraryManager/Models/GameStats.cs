@@ -9,6 +9,6 @@ namespace GameLibraryManager.Models
     public class GameStats
     {
         public int HoursPlayed { get; set; }
-        public int HighScore { get; set; }
+        public int HighestScore { get; set; }
     }
 }
