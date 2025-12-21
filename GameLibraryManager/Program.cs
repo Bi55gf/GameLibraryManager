@@ -7,92 +7,96 @@ using System.Threading.Tasks;
 using GameLibraryManager.Models;
 using GameLibraryManager.Services;
 
-class Program
+
+namespace GameLibraryManager
 {
-    // Entry point
-    static void main(string[] args)
+        internal class Program
     {
-        var service = new PlayerService();
-        var storage = new PlayerStorage();
-
-        service.LoadPlayers(storage.Load());
-
-        bool exit = false;
-
-        while (!exit)
+        // Entry point
+        static void Main(string[] args)
         {
-            Console.WriteLine("\n1. Add player");
-            Console.WriteLine("2. Search player");
-            Console.WriteLine("3. Sort by hours played");
-            Console.WriteLine("4. Save and exit");
-            Console.WriteLine("Choice: ");
+            var service = new PlayerService();
+            var storage = new PlayerStorage();
 
-            if (!int.TryParse(Console.ReadLine(), out int option))
-                continue;
+            service.LoadPlayers(storage.Load());
 
-            switch (option)
+            bool exit = false;
+
+            while (!exit)
             {
-                case 1:
-                    AddPlayer(service);
-                    break;
-                case 2:
-                    SearchPlayer(service);
-                    break;
-                case 3:
-                    service.SortByHoursPlayed();
-                    Console.WriteLine("Players Sorted.");
-                    break;
-                case 4:
-                    storage.Save(service.GetAllPlayers());
-                    exit = true;
-                    break;
+                Console.WriteLine("\n1. Add player");
+                Console.WriteLine("2. Search player");
+                Console.WriteLine("3. Sort by hours played");
+                Console.WriteLine("4. Save and exit");
+                Console.WriteLine("Choice: ");
+
+                if (!int.TryParse(Console.ReadLine(), out int option))
+                    continue;
+
+                switch (option)
+                {
+                    case 1:
+                        AddPlayer(service);
+                        break;
+                    case 2:
+                        SearchPlayer(service);
+                        break;
+                    case 3:
+                        service.SortByHoursPlayed();
+                        Console.WriteLine("Players Sorted.");
+                        break;
+                    case 4:
+                        storage.Save(service.GetAllPlayers());
+                        exit = true;
+                        break;
+                }
             }
         }
-    }
 
-    // Add a new player
-    static void AddPlayer(PlayerService service)
-    {
-        Console.WriteLine("ID: ");
-        int id = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Username: ");
-        string username = Console.ReadLine();
-
-        Console.WriteLine("Hours Played: ");
-        int hoursPlayed = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("High score: ");
-        int score = int.Parse(Console.ReadLine());
-
-        var player = new Player
+        // Add a new player
+        static void AddPlayer(PlayerService service)
         {
-            PlayerId = id,
-            UserName = username,
-            Stats =
+            Console.WriteLine("ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Username: ");
+            string username = Console.ReadLine();
+
+            Console.WriteLine("Hours Played: ");
+            int hoursPlayed = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("High score: ");
+            int score = int.Parse(Console.ReadLine());
+
+            var player = new Player
             {
-                HoursPlayed = hoursPlayed,
-                HighestScore = score
-            }    
-        };
+                PlayerId = id,
+                UserName = username,
+                Stats =
+                {
+                    HoursPlayed = hoursPlayed,
+                    HighestScore = score
+                }
+            };
 
-        service.AddPlayer(player);
-    }
-
-    // Search for a player by ID
-    static void SearchPlayer(PlayerService service)
-    {
-        Console.WriteLine("Enter ID: ");
-        int id = int.Parse(Console.ReadLine());
-
-        var player = service.SearchById(id);
-
-        if (player == null)
-        {
-            Console.WriteLine("Player not found.");
-            return;
+            service.AddPlayer(player);
         }
 
-        Console.WriteLine($"{player.UserName} | Hours: {player.Stats.HoursPlayed} | Score: {player.Stats.HighestScore}");
-    } 
+        // Search for a player by ID
+        static void SearchPlayer(PlayerService service)
+        {
+            Console.WriteLine("Enter ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            var player = service.SearchById(id);
+
+            if (player == null)
+            {
+                Console.WriteLine("Player not found.");
+                return;
+            }
+
+            Console.WriteLine($"{player.UserName} | Hours: {player.Stats.HoursPlayed} | Score: {player.Stats.HighestScore}");
+        }
+    }
 }
