@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using GameLibraryManager.Models;
 using GameLibraryManager.Services;
 
-class program
+class Program
 {
     // Entry point
-    static void main()
+    static void main(string[] args)
     {
         var service = new PlayerService();
         var storage = new PlayerStorage();
