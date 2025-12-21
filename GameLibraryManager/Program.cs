@@ -68,7 +68,7 @@ class program
         var player = new Player
         {
             PlayerId = id,
-            Username = username,
+            UserName = username,
             Stats =
             {
                 HoursPlayed = hoursPlayed,
