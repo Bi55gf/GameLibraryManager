@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryManager.Models
 {
+    // Class representing game statistics
     public class GameStats
     {
         public int HoursPlayed { get; set; }

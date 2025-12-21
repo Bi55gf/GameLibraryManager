@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryManager.Interfaces
 {
+    // Interface for sortable entities
     public interface ISortable
     {
         void SortByHoursPlayed();

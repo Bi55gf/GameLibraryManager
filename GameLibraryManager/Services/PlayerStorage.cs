@@ -10,6 +10,7 @@ using System.Text.Json;
 
 namespace GameLibraryManager.Services
 {
+    // Service for saving and loading player data
     public class PlayerStorage
     {
         private const string FileName = "players.json";
@@ -32,6 +33,7 @@ namespace GameLibraryManager.Services
             }
         }
 
+        // Load player data from file
         public List<Player> Load()
         {
             try

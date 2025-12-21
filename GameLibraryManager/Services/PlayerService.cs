@@ -11,6 +11,7 @@ using GameLibraryManager.Utilities;
 
 namespace GameLibraryManager.Services
 {
+    // Service class for managing players
     public class PlayerService : ISearchable, ISortable
     {
         private readonly List<Player> playerlist = new();

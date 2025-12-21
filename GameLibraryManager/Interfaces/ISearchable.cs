@@ -7,6 +7,7 @@ using GameLibraryManager.Models;
 
 namespace GameLibraryManager.Interfaces
 {
+    // Interface for searchable entities
     public interface ISearchable
     {
         Player SearchById(int id);

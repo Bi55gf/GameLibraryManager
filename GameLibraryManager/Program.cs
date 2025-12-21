@@ -9,6 +9,7 @@ using GameLibraryManager.Services;
 
 class program
 {
+    // Entry point
     static void main()
     {
         var service = new PlayerService();
@@ -49,6 +50,7 @@ class program
         }
     }
 
+    // Add a new player
     static void AddPlayer(PlayerService service)
     {
         Console.WriteLine("ID: ");
@@ -77,6 +79,7 @@ class program
         service.AddPlayer(player);
     }
 
+    // Search for a player by ID
     static void SearchPlayer(PlayerService service)
     {
         Console.WriteLine("Enter ID: ");

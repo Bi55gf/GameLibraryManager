@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryManager.Models
 {
+    // Class representing a player
     public class Player
     {
        public int PlayerId { get; set; }
