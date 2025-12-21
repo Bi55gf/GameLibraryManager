@@ -14,18 +14,19 @@ namespace GameLibraryManager.Services
     // Service class for managing players
     public class PlayerService : ISearchable, ISortable
     {
-        private readonly List<Player> playerlist = new();
+        // Internal list to store players
+        private readonly List<Player> playerList = new();
 
         public void AddPlayer(Player player)
         {
-            playerlist.Add(player);
-            AppLogger.Instance.Log($"Player added: {player.Name}");
+            playerList.Add(player);
+            AppLogger.Instance.Log($"Player added: {player.UserName}");
         }
 
         // Search player by ID
         public Player SearchById(int id)
         {
-            foreach (var player in playerlist)
+            foreach (var player in playerList)
             {
                 if (player.PlayerId == id)
                 {
@@ -36,37 +37,37 @@ namespace GameLibraryManager.Services
         }
 
         // Sort players by hours played in descending order
-        public void SortByHoursPlayer()
+        public void SortByHoursPlayed()
         {
-            for (int i = 0; i < playerlist.Count - 1; i++)
+            for (int i = 0; i < playerList.Count - 1; i++)
             {
                 int maxIndex = i;
 
-                for (int j = i + 1; j < playerlist.Count; j++)
+                for (int j = i + 1; j < playerList.Count; j++)
                 {
-                    if (playerlist[j].Stats.HoursPlayed > playerlist[maxIndex].Stats.HoursPlayed)
+                    if (playerList[j].Stats.HoursPlayed > playerList[maxIndex].Stats.HoursPlayed)
                     {
                         maxIndex = j;
                     }
                 }
 
-                var temp = playerlist[i];
-                playerlist[i] = playerlist[maxIndex];
-                playerlist[maxIndex] = temp;
+                var temp = playerList[i];
+                playerList[i] = playerList[maxIndex];
+                playerList[maxIndex] = temp;
             }
         }
 
         // Get all players
         public List<Player> GetAllPlayers()
         {
-            return playerlist;
+            return playerList;
         }
 
         // Load players from a given list
         public void LoadPlayers(List<Player> players)
         {
-            playerlist.Clear();
-            playerlist.AddRange(players);
+            playerList.Clear();
+            playerList.AddRange(players);
         }
     }
 }

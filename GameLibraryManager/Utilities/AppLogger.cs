@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GameLibraryManager.Utilities
 {
     // Singleton Logger Class
-    private sealed class AppLogger
+    public sealed class AppLogger
     {
         private static AppLogger instance;
         private static readonly object lockObj = new();
@@ -32,7 +32,9 @@ namespace GameLibraryManager.Utilities
         // Log method to append messages to the log file
         public void Log(string message)
         {
-            File.AppendAllText(LogFile, $"{DateTime.Now} : {message}{Environment.NewLine}");
+            File.AppendAllText(
+                LogFile,
+                $"{DateTime.Now} : {message}{Environment.NewLine}");
         }
     }
 }
